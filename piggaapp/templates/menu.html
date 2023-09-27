@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Menu</h1>
+<!--Begin col-->
+<div class="column">
+    <ul>
+    {% for item in menu_items %}
+            <li><a href="{% url 'menu_item_detail' item.pk %}">{{ item.name }}</a></li>
+    {% endfor %}
+    </ul>    
+</div>
+
+{% if user.is_superuser or user.is_staff %}
+    <a class="btn btn-primary mt-3" href="{% url 'add_menu_item' %}">Add Items</a> 
+{% endif %}
+
+{% endblock %}
+

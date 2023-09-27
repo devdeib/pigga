@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="column">
+    <form method="POST", enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if form.instance.photo %}
+          <div>
+            <label>Photo Preview:</label>
+            <img src="{{ form.instance.photo.url }}" alt="Menu item photo">
+          </div>
+        {% endif %}
+        <button type="submit" id="button">Add</button>
+    </form>
+</div>
+{% endblock %}
+

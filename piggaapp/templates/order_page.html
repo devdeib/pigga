@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Order{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<form action="{% url 'submit_order' %}" method="post">
+    {% csrf_token %}
+    {% for item in menu_items %}
+      <div>
+        <input type="checkbox" id="{{ item.id }}" name="selected_items" value="{{ item.id }}">
+        <label for="{{ item.id }}">
+            <img src="{% static 'menu_images/' %}{{ item.name }}.jpg" height="100" width="100">
+          {{ item.name }} - ${{ item.price }}
+        </label>
+      </div>
+    {% endfor %}
+    <button type="submit">Submit Order</button>
+  </form>
+  
+{% else %}
+  <p>Please Login First, <a href="{% url 'login' %}">Login</a></p>
+{% endif %}
+{% endblock %}

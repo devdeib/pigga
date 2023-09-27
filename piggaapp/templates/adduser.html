@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+{% block title %}Create User{% endblock %} 
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center" style="padding-top: 80px; padding-bottom: 80px;">
+    <div class="col-md-6">
+      <h2>Create User:</h2>
+      <h1></h1>
+      
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <p>Username:</p>
+          {{ form.username }}
+          <p></p>
+          <p>Email:</p>
+          {{ form.email }}
+          <p></p>
+          <p>Phone Number:</p>
+          {{ form.phonenumber }}
+          <p></p>
+          <p>Address:</p>
+          {{ form.address }}
+          <p></p>
+          <p>Password:</p>
+          {{ form.password1 }}
+          <p></p>
+          <p>Password Confirmation:</p>
+          {{ form.password2 }}
+          <p></p>
+          <p>Super User: {{ form.is_superuser }}</p>
+          <p>Staff User: {{ form.is_staff }}</p>
+          <p>Customer: {{ form.customer }}</p>
+          
+        </div>
+        
+        <button type="submit" class="btn btn-primary" value="Create">Create!</button>
+      </form>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

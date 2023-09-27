@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>User List: </h1>
+    <ul>
+        {% for user in users %}
+            <li>
+                <strong>Username:</strong> {{ user.username }}<br>
+                <strong>Email:</strong> {{ user.email }}<br>
+                <td>
+                    <strong>Status:</strong>
+                    {% if user.is_superuser %}
+                        Super User
+                    {% elif user.is_staff %}
+                        Staff User
+                    {% else %}
+                        Customer
+                    {% endif %}
+                </td>
+                <form action="{% url 'delete_user' user.username %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary mt-3">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+        <a href="/adduser" class="btn btn-primary mt-3">Add User</a>
+    </ul>
+{% endblock %}

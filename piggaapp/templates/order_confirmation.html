@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Success{% endblock %}
+{% block content %}
+
+<ul>
+  <h1>Order Confirmation</h1>
+  <p>You have selected the following items:</p>
+  {% for item in selected_items %}
+    <p>{{ item.name }} {{ item.price }} $</p>
+  {% endfor %}
+  <p>Total Price: ${{ total_price }}</p>
+  <p>Address: {{ address }}</p>
+</ul>
+{% endblock %}
+
